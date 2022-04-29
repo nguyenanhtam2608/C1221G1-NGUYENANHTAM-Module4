@@ -14,8 +14,14 @@ public class DictionaryServiceImpl implements DictionaryService {
         map.put("hello", "xin chào");
         map.put("goodbye", "Tạm biệt");
         map.put("display", "hiển thị");
-         return  map.get(dich);
+        map.put("giang", " giảng đầu bò ");
 
+        if (map.get(dich) != null) {
+            return map.get(dich);
+        }else {  return "khong tim thay";}
     }
 
+
 }
+
+

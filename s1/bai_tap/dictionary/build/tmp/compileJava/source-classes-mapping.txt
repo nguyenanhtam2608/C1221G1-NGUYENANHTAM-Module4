@@ -1,6 +1,6 @@
-com/codegym/controller/DictionaryController.java
- com.codegym.controller.DictionaryController
 com/codegym/service/DictionaryService.java
  com.codegym.service.DictionaryService
+com/codegym/controller/DictionaryController.java
+ com.codegym.controller.DictionaryController
 com/codegym/service/impl/DictionaryServiceImpl.java
  com.codegym.service.impl.DictionaryServiceImpl
