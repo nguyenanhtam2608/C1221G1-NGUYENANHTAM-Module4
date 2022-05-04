@@ -1,0 +1,10 @@
+com/codegym/controller/DictionaryController.java
+ com.codegym.controller.DictionaryController
+com/codegym/repository/DictionaryRepository.java
+ com.codegym.repository.DictionaryRepository
+com/codegym/repository/impl/DictionaryRepositoryIpml.java
+ com.codegym.repository.impl.DictionaryRepositoryIpml
+com/codegym/service/DictionaryService.java
+ com.codegym.service.DictionaryService
+com/codegym/service/impl/DictionaryServiceImpl.java
+ com.codegym.service.impl.DictionaryServiceImpl
