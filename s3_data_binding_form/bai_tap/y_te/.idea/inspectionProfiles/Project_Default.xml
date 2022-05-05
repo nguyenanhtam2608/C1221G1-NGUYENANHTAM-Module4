@@ -24,6 +24,7 @@
           <option value="http://schemas.xmlsoap.org/" />
           <option value="http://cxf.apache.org/schemas/" />
           <option value="http://www.springframework.org" />
+          <option value="http://java.sun.com" />
         </list>
       </option>
     </inspection_tool>

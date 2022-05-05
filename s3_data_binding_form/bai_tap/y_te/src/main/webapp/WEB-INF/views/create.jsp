@@ -26,6 +26,9 @@
 <h1>Tờ khai y tế</h1>
 <p class="thep">Đây là tài liệu quang trọng </p>
 
+<a href="/list">List Khai báo </a>
+<br>
+
 <form:form action="" modelAttribute="yTe" cssStyle="text-align: center" method="post">
     <div><p>Họ và tên (IN HOA) </p>
         <form:input path="ten"/>

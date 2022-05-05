@@ -1,4 +1,12 @@
 com/codegym/model/YTe.java
  com.codegym.model.YTe
+com/codegym/repository/YTeRepository.java
+ com.codegym.repository.YTeRepository
+com/codegym/service/YTeService.java
+ com.codegym.service.YTeService
+com/codegym/service/impl/YTeServiceImpl.java
+ com.codegym.service.impl.YTeServiceImpl
+com/codegym/repository/impl/YTeRepositoryImpl.java
+ com.codegym.repository.impl.YTeRepositoryImpl
 com/codegym/controller/YTeController.java
  com.codegym.controller.YTeController
