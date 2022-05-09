@@ -9,11 +9,11 @@ public interface ProductRepository {
 
     void save(Product product);
 
-    List<Product> findByName(String name);
+//    List<Product> findByName(String name);
 
     Product findById(int id);
 
-    void update(int id, Product product);
+    void update(Product product);
 
-    void remove(int id);
+    void remove(Product product);
 }

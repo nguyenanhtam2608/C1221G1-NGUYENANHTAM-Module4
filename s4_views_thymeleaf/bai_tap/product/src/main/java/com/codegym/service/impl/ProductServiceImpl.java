@@ -7,10 +7,11 @@ import com.codegym.service.ProductService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
 
 public class ProductServiceImpl implements ProductService {
-ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
+    ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
 
     @Override
     public List<Product> findALL() {
@@ -22,10 +23,10 @@ ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
         productRepository.save(product);
     }
 
-    @Override
-    public List<Product>findByName(String name) {
-        return productRepository.findByName(name);
-    }
+//    @Override
+//    public List<Product> findByName(String name) {
+//        return productRepository.findByName(name);
+//    }
 
     @Override
     public Product findById(int id) {
@@ -33,12 +34,12 @@ ProductRepositoryImpl productRepository = new ProductRepositoryImpl();
     }
 
     @Override
-    public void update(int id, Product product) {
-        productRepository.update(id,product);
+    public void update(Product product) {
+        productRepository.update(product);
     }
 
     @Override
-    public void remove(int id) {
-        productRepository.remove(id);
+    public void remove(Product product) {
+        productRepository.remove(product);
     }
 }

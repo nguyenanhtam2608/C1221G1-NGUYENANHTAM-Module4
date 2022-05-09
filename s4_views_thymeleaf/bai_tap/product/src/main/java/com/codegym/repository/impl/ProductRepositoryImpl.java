@@ -1,56 +1,63 @@
 package com.codegym.repository.impl;
 
 import com.codegym.model.Product;
+import com.codegym.repository.BaseRepository;
 import com.codegym.repository.ProductRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 import java.util.*;
 
 @Repository
 public class ProductRepositoryImpl implements ProductRepository {
-    static public Map<Integer, Product> productMap;
-
-    static {
-        productMap = new HashMap<>();
-        productMap.put(1, new Product(1, "bánh", 20000.0, "Ngon", "Cosy"));
-        productMap.put(2, new Product(2, "Kẹo", 2000.0, "Ngon", "Socola"));
-        productMap.put(3, new Product(3, "Nước", 25000.0, "Ngon", "Dừa xiêm"));
-    }
 
     @Override
     public List<Product> findALL() {
-        return new ArrayList<>(productMap.values());
+        TypedQuery<Product> typedQuery = BaseRepository.entityManager.createQuery("select s from Product s", Product.class);
+        return typedQuery.getResultList();
     }
 
     @Override
     public void save(Product product) {
-        productMap.put(product.getId(), product);
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        BaseRepository.entityManager.persist(product);
+        entityTransaction.commit();
     }
 
 
-    @Override
-    public List<Product> findByName(String name) {
-        List<Product> productList = new ArrayList<>();
-        for (Integer key : productMap.keySet()) {
-            if (productMap.get(key).getName().toLowerCase(Locale.ROOT).contains(name)) {
-                productList.add(productMap.get(key));
-            }
-        }
-        return productList;
-    }
+//    @Override
+//    public List<Product> findByName(String name) {
+//        List<Product> productList = new ArrayList<>();
+//        for (Integer key : productMap.keySet()) {
+//            if (productMap.get(key).getName().toLowerCase(Locale.ROOT).contains(name)) {
+//                productList.add(productMap.get(key));
+//            }
+//        }
+//        return productList;
+//    }
 
     @Override
     public Product findById(int id) {
-        return productMap.get(id);
+        return BaseRepository.entityManager.find(Product.class, id);
     }
 
     @Override
-    public void update(int id, Product product) {
-        productMap.put(id, product);
+    public void update(Product product) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+//        Product productUpdate = findById(product.getId());
+        BaseRepository.entityManager.merge(product);
+        entityTransaction.commit();
     }
 
     @Override
-    public void remove(int id) {
-        productMap.remove(id);
+    public void remove(Product product) {
+        EntityTransaction entityTransaction = BaseRepository.entityManager.getTransaction();
+        entityTransaction.begin();
+        Product productDelete = findById(product.getId());
+        BaseRepository.entityManager.remove(productDelete);
+        entityTransaction.commit();
     }
 }

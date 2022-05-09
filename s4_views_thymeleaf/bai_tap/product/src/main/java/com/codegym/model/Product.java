@@ -1,6 +1,12 @@
 package com.codegym.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="product")
 public class Product {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)// id Primary key và auto tăng
     private int id;
     private String name;
     private Double price;
