@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: top-bootstrap}">
+
+
+
+    <title>Create </title>
+
+</head>
+
+<h3>Add Blog</h3>
+<p>
+    <a th:href="@{/blog}">
+        Back to blog list
+    </a>
+</p>
+
+<div class="tale">
+    <form action="/blog/create" th:object="${creteBlog}" novalidate="novalidate" method="post">
+        <div>
+            <label> Name Blog </label>
+            <input type="text" th:field="*{name}">
+        </div>
+
+        <div>
+            <label> Contend </label>
+            <input type="text" th:field="*{contend}">
+        </div>
+
+        <div>
+            <label> Author</label>
+            <input type="text" th:field="*{author}">
+        </div>
+
+        <div>
+            <select th:field="*{category}">
+                <option th:each="category:${category}"  th:value="${category.id}"  th:text="${category.nameCategory}"></option>
+            </select>
+
+        </div>
+
+        <div>
+            <button type="submit">CREATE</button>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="~{layout :: bot-bootstrap}"></footer>
+</body>
+</html>
