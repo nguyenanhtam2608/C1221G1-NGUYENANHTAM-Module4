@@ -1,6 +1,9 @@
 package com.codegym.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table

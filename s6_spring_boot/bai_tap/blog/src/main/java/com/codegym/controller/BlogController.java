@@ -1,17 +1,19 @@
 package com.codegym.controller;
 
 import com.codegym.model.Blog;
-import com.codegym.model.Category;
 import com.codegym.service.IBlogService;
 import com.codegym.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.Optional;
 
 @Controller
 @RequestMapping("blog")
@@ -23,11 +25,7 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
-    @GetMapping("")
-    public String showList(Model model) {
-        model.addAttribute("listBlog", this.blogService.findAll());
-        return "list";
-    }
+
 
     @GetMapping("showCreate")
     public String showCreate(Model model) {
@@ -71,4 +69,23 @@ public class BlogController {
         model.addAttribute("view", blogService.findById(id));
         return "view";
     }
+
+
+    @GetMapping(value = {"search", ""})
+    public String listUpdate(
+            @RequestParam("search") Optional<String> name,
+            @RequestParam Optional<String> sort,
+            @PageableDefault(value = 4 , sort = {}) Pageable pageable,
+            Model model
+            ) {
+        String nameSearch = name.orElse("");
+        String sortBy = sort.orElse("");
+
+        model.addAttribute("listBlog", this.blogService.findByNameContaining(nameSearch, pageable));
+        model.addAttribute("nameSearch", nameSearch);
+        model.addAttribute("sortBy", sortBy);
+        return "list";
+    }
+
+
 }

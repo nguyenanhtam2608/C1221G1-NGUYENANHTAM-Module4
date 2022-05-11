@@ -1,14 +1,14 @@
-com/codegym/model/Product.java
- com.codegym.model.Product
+com/codegym/controller/ProductController.java
+ com.codegym.controller.ProductController
 com/codegym/service/ProductService.java
  com.codegym.service.ProductService
 com/codegym/repository/ProductRepository.java
  com.codegym.repository.ProductRepository
 com/codegym/repository/BaseRepository.java
  com.codegym.repository.BaseRepository
-com/codegym/controller/ProductController.java
- com.codegym.controller.ProductController
 com/codegym/repository/impl/ProductRepositoryImpl.java
  com.codegym.repository.impl.ProductRepositoryImpl
 com/codegym/service/impl/ProductServiceImpl.java
  com.codegym.service.impl.ProductServiceImpl
+com/codegym/model/Product.java
+ com.codegym.model.Product
