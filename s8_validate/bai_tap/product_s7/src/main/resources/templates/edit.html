@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head"></head>
+<body>
+<h3>Edit product</h3>
+<p>
+  <a th:href="@{/products}">
+    Back to product list
+  </a>
+</p>
+<div id="form">
+  <form action="#" th:action="@{/products/update}" th:object="${productDto}"
+        method="POST" novalidate="novalidate">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+      <label>Name</label>
+      <input type="text" th:field="*{name}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('name')}"
+         th:errors="*{name}"></p>
+    </div>
+    <div>
+      <label>price</label>
+      <input type="number" th:field="*{price}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('price')}"
+         th:errors="*{price}"></p>
+    </div>
+    <div>
+      <label>Description</label>
+      <input type="text" th:field="*{description}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('description')}"
+         th:errors="*{description}"></p>
+    </div>
+    <div>
+      <label>Producer</label>
+      <input type="text" th:field="*{producer}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('producer')}"
+         th:errors="*{producer}"></p>
+    </div>
+
+    <div>
+      <select th:field="*{category}">
+        <option th:each="category:${category}" th:value="${category.id}"
+                th:text="${category.nameCategory}"></option>
+      </select>
+
+    </div>
+    <input type="submit" value="Edit"/>
+  </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

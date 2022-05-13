@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProductUpdateValidateApplication {
+public class ProductS7Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProductUpdateValidateApplication.class, args);
+        SpringApplication.run(ProductS7Application.class, args);
     }
 
 }
