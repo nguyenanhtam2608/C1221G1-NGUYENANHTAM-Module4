@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="~{layout :: top-bootstrap}">
+
+<title>Create Music</title>
+
+</head>
+<body>
+
+<h3>Add Music</h3>
+<p>
+    <a th:href="@{/music}">
+        Back to music list
+    </a>
+</p>
+
+<div id="form">
+    <form action="/music/create" th:object="${musicDto}" novalidate="novalidate" method="post">
+        <div>
+            <label> Tên bài hát </label>
+            <input type="text" th:field="*{nameSong}">
+            <p style="color: red" th:if="${#fields.hasErrors('nameSong')}"
+               th:errors="*{nameSong}"></p>
+        </div>
+
+        <div>
+            <label> Tên ca sĩ </label>
+            <input type="text" th:field="*{nameSinger}">
+            <p style="color: red" th:if="${#fields.hasErrors('nameSinger')}"
+               th:errors="*{nameSinger}"></p>
+        </div>
+
+        <div>
+            <label> Tên thể loại</label>
+            <input type="text" th:field="*{category}">
+            <p style="color: red" th:if="${#fields.hasErrors('category')}"
+               th:errors="*{category}"></p>
+        </div>
+
+        <div>
+            <label> Link </label>
+            <input type="text" th:field="*{link}">
+            <p style="color: red" th:if="${#fields.hasErrors('link')}"
+               th:errors="*{link}"></p>
+        </div>
+
+        <div>
+            <button type="submit">CREATE</button>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="~{layout :: bot-bootstrap}"></footer>
+</body>
+</html>

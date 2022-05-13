@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <div th:fragment="linkbs">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+              integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css">
+    </div>
+</head>
+<body>
+
+<!--<div>-->
+<!--    <form method="get" action="/products/search" th:object="${productList}">-->
+
+<!--        <input type="text" name="search" placeholder="Nhập tên muốn ?"/>-->
+<!--        <button type="submit" value="search"> Search</button>-->
+
+<!--    </form>-->
+<!--</div>-->
+
+<h3>User</h3>
+
+<p>
+    <a th:href="@{/showCreate}">
+        Add new User
+    </a>
+</p>
+
+
+<!--<div style="text-align: center">-->
+
+<!--    <a th:if="${productList.hasPrevious()}"-->
+<!--       th:href="@{/products/search(page=${productList.number - 1},  sort=${sortBy})}" >-->
+<!--        PREVIOUS-->
+<!--    </a>-->
+<!--    <span th:text="${productList.number + 1}"></span>-->
+<!--    /-->
+<!--    <span th:text="${productList.totalPages}"></span>-->
+
+<!--    <a th:if="${productList.hasNext()}"-->
+<!--       th:href="@{/products/search(page=${productList.number + 1},  sort=${sortBy})}">-->
+<!--        NEXT-->
+<!--    </a>-->
+
+<!--</div>-->
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id="customers">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>Fist Name
+<!--            <a th:href="@{/products/(search=${nameSearch}, sort='name,asc')}">Sort By Name</a>-->
+        </th>
+        <th>Last Name</th>
+        <th>phone</th>
+        <th>Age</th>
+        <th>Email</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${listUser}">
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.firstName}"></td>
+        <td th:text="${row.lastName}"></td>
+        <td th:text="${row.phone}"></td>
+        <td th:text="${row.age}"></td>
+        <td th:text="${row.email}"></td>
+        <td><a th:href="@{/products/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/products/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/products/{id}/view(id=${row.getId()})}">view</a></td>
+<!--        <td>-->
+<!--&lt;!&ndash;            <button&ndash;&gt;-->
+<!--&lt;!&ndash;                    th:attr="onclick=|deleteModal('${row.id}', '${row.fistname}')|"&ndash;&gt;-->
+<!--&lt;!&ndash;                    type="button" class="btn btn-danger" data-toggle="modal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    data-target="#exampleModalCenter">&ndash;&gt;-->
+<!--&lt;!&ndash;                Delete&ndash;&gt;-->
+<!--&lt;!&ndash;            </button>&ndash;&gt;-->
+<!--        </td>-->
+    </tr>
+    </tbody>
+</table>
+<!--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"-->
+<!--     aria-labelledby="exampleModalCenterTitle"-->
+<!--     aria-hidden="true">-->
+<!--    <div class="modal-dialog modal-dialog-centered" role="document">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h5 class="modal-title" id="exampleModalLongTitle">Delete employee</h5>-->
+<!--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--                    <span aria-hidden="true">&times;</span>-->
+<!--                </button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                Bạn có muốn xoá không-->
+<!--                <span>Tên: <p id="name"></p></span>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close-->
+<!--                </button>-->
+<!--                <form method="post" th:action="@{products/delete}">-->
+<!--                    <input type="hidden" name="id" id="id-del">-->
+<!--                    <button type="submit" class="btn btn-primary">Xác nhận xoá</button>-->
+<!--                </form>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+</div>
+<!--<script>-->
+<!--    function deleteModal(id, name) {-->
+<!--        document.getElementById("id-del").value = id;-->
+<!--        document.getElementById("name").innerText = name;-->
+<!--    }-->
+<!--</script>-->
+<!--<div th:fragment="jsbs">-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"-->
+<!--            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"-->
+<!--            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"-->
+<!--            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"-->
+<!--            integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2"-->
+<!--            crossorigin="anonymous"></script>-->
+<!--    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>-->
+
+<!--    <script>-->
+<!--        $(document).ready(function () {-->
+<!--            $('#Mytable').dataTable({-->
+<!--                "dom": 'lrtip',-->
+<!--                "lengthChange": false,-->
+<!--                "pageLength": 5-->
+<!--            });-->
+<!--        });</script>-->
+<!--</div>-->
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
