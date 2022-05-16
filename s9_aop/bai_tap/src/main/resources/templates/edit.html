@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<body>
+<h3>Trả sách </h3>
+<p>
+    <a th:href="@{/}">
+        Back to Book list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/boorow}" th:object="${list}"
+          method="POST" novalidate="novalidate">
+
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label>Name Book </label>
+            <input type="text" th:field="*{nameBook}">
+        </div>
+
+        <div><label> Quantity</label>
+            <input type="text" th:field="*{quantity}">
+
+<!--            <label th:if="${list.quantity} > 0"-->
+<!--                   th:value="*{quantity -1 }">-->
+<!--            </label>-->
+
+
+        </div>
+<!--        <div>-->
+<!--            <label> Name User </label>-->
+<!--            <input type="text" th:field="*{user.nameUser}">-->
+<!--        </div>-->
+
+        <input type="submit" value="boorow"/>
+    </form>
+</div>
+<footer></footer>
+</body>
+</html>
