@@ -5,6 +5,7 @@ import com.codegym.repository.IBookRepository;
 import com.codegym.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
@@ -25,20 +26,34 @@ public class BookService implements IBookService {
     }
 
     @Override
-    public void borrow(Book book) {
-        book.setQuantity(book.getQuantity()-1);
-        iBookRepository.save(book);
+
+    public String borrow(Book book) {
+        if (book.getQuantity() == 0) {
+            return "Hết sách ";
+        } else {
+            book.setQuantity(book.getQuantity() - 1);
+            iBookRepository.save(book);
+            return "Thành Công";
+        }
+
     }
 
-    @Override
-    public void pay(Book book) {
-        book.setQuantity(book.getQuantity()+1);
-        iBookRepository.save(book);
-    }
 
     @Override
     public void plus(Book book) {
-        book.setQuantity(book.getQuantity()+1);
+        book.setQuantity(book.getQuantity() + 1);
         iBookRepository.save(book);
+    }
+
+    @Override
+    public String borrowError(Integer id) {
+        if (findById(id).getQuantity() <= 0) {
+            return "Hết sách";
+        } else {
+            findById(id).setQuantity(findById(id).getQuantity() - 1);
+            iBookRepository.save(findById(id));
+            return "Đã mượn";
+        }
+
     }
 }
