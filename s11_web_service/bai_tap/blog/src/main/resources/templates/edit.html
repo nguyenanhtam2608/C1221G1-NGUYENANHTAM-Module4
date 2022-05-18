@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<body>
+<h3>Edit Music</h3>
+<p>
+  <a th:href="@{/blog}">
+    Back to music list
+  </a>
+</p>
+<div id="form">
+  <form  th:action="@{/blog/edit}" th:object="${showEdit}"
+         method="POST" novalidate="novalidate">
+    <input type="hidden" th:field="*{id}"/>
+    <div>
+      <label>Name</label>
+      <input type="text" th:field="*{name}">
+    </div>
+
+    <div>
+      <label> Content</label>
+      <input type="text" th:field="*{contend}">
+    </div>
+    <div>
+      <label> Author</label>
+      <input type="text" th:field="*{author}">
+    </div>
+
+    <div>
+      <label>Category</label>
+      <select th:field="*{category}">
+        <option th:each="category:${category}"  th:value="${category.id}"  th:text="${category.nameCategory}"></option>
+      </select>
+    </div>
+    <input type="submit" value="Edit"/>
+  </form>
+</div>
+<footer></footer>
+</body>
+</html>
