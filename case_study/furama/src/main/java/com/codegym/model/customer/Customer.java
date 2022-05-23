@@ -31,6 +31,19 @@ public class Customer {
     public Customer() {
     }
 
+    public Customer(Integer idCustomer, CustomerType customerType, String nameCustomer, String birthdayCustomer, Integer genderCustomer, String idCardCustomer, String phoneCustomer, String emailCustomer, String addressCustomer, List<Contract> contracts) {
+        this.idCustomer = idCustomer;
+        this.customerType = customerType;
+        this.nameCustomer = nameCustomer;
+        this.birthdayCustomer = birthdayCustomer;
+        this.genderCustomer = genderCustomer;
+        this.idCardCustomer = idCardCustomer;
+        this.phoneCustomer = phoneCustomer;
+        this.emailCustomer = emailCustomer;
+        this.addressCustomer = addressCustomer;
+        this.contracts = contracts;
+    }
+
     public Integer getIdCustomer() {
         return idCustomer;
     }
@@ -99,7 +112,16 @@ public class Customer {
         return addressCustomer;
     }
 
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
     public void setAddressCustomer(String addressCustomer) {
         this.addressCustomer = addressCustomer;
     }
+
 }

@@ -10,16 +10,14 @@ public interface ICustomerService {
     Page<Customer> findAll(Pageable pageable);
 
     Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContaining(String name, String email, Pageable pageable);
-//
-//    Page<Customer> findCustomerByCustomerType(
-//            @Param("searchName") String searchName,
-//            @Param("searchEmail") String searchEmail,
-//            @Param("searchType") String searchType,
-//            Pageable pageable);
+
+    Page<Customer> findAllAndSearch(String searchName, String searchEmail, String searchType, Pageable pageable);
 
     void save(Customer customer);
 
     void delete(Customer customer);
+
+//    Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(String name, String email, Integer customerType, Pageable pageable);
 
     Customer findById(int id);
 }

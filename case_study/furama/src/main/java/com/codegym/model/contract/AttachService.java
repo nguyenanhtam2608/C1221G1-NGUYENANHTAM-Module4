@@ -17,7 +17,7 @@ public class AttachService {
     private String statusAttachService;
 
     @OneToMany(mappedBy = "attachService")
-    List<contractDetail> contractDetails;
+    List<ContractDetail> ContractDetails;
 
     public AttachService() {
     }

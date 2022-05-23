@@ -18,5 +18,35 @@ public class RentType {
     public RentType() {
     }
 
+    public int getIdRentType() {
+        return idRentType;
+    }
 
+    public void setIdRentType(int idRentType) {
+        this.idRentType = idRentType;
+    }
+
+    public String getNameRentType() {
+        return nameRentType;
+    }
+
+    public void setNameRentType(String nameRentType) {
+        this.nameRentType = nameRentType;
+    }
+
+    public String getCostRentType() {
+        return costRentType;
+    }
+
+    public void setCostRentType(String costRentType) {
+        this.costRentType = costRentType;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List<Service> services) {
+        this.services = services;
+    }
 }

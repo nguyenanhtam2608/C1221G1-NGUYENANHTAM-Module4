@@ -34,6 +34,16 @@ public class CustomerService implements ICustomerService {
         iCustomerRepository.delete(customer);
     }
 
+//    @Override
+//    public Page<Customer> findCustomerByCustomerTypeContaining(String searchType,Pageable pageable) {
+//        return iCustomerRepository.findCustomerByCustomerTypeContaining(searchType,pageable);
+//    }
+//
+//    @Override
+//    public Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(String name, String email, Integer customerType, Pageable pageable) {
+//        return iCustomerRepository.findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(name,email,customerType,pageable);
+//    }
+
     @Override
     public Customer findById(int id) {
         return iCustomerRepository.findById(id).orElse(null);
@@ -44,7 +54,10 @@ public class CustomerService implements ICustomerService {
         return iCustomerRepository.findCustomerByNameCustomerContainingAndEmailCustomerContaining(name,email,pageable);
     }
 
-
+    @Override
+    public Page<Customer> findAllAndSearch (String searchName, String searchEmail, String searchType, Pageable pageable) {
+        return iCustomerRepository.findAllAndSearch("%"+searchName+"%","%"+searchEmail+"%",searchType,pageable);
+    }
 
 
 }

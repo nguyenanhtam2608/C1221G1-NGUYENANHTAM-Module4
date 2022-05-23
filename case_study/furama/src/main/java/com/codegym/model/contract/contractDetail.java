@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table
-public class contractDetail {
+public class ContractDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContractDetail;
@@ -18,6 +18,6 @@ public class contractDetail {
     @Column(columnDefinition = "INTEGER")
     private String quantity;
 
-    public contractDetail() {
+    public ContractDetail() {
     }
 }

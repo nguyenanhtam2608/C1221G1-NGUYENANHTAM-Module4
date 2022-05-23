@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout :: top-bootstrap}">
+<head th:replace="/layout :: head">
+
 </head>
-<body>
-<h3>Add Customer</h3>
+<body class="container">
+<h3 style="text-align: center">Add Customer</h3>
 <p>
     <a th:href="@{/customer}">
         Back to customer list
     </a>
 </p>
-<div id="form">
-    <form action="/customer/save" th:object="${create}"
+<div class="table">
+    <form action="/customer/save" th:object="${customerDto}"
           method="POST" novalidate="novalidate">
-        <input type="hidden" th:field="*{id}"/>
+<!--        <input type="hidden" th:field="*{idCustomer}"/>-->
         <div>
             <label>Name</label>
             <input type="text" th:field="*{nameCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('name')}"-->
-            <!--         th:errors="*{name}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('nameCustomer')}"
+                     th:errors="*{nameCustomer}"></p>
         </div>
         <div>
             <label>Birth Day</label>
             <input type="date" th:field="*{birthdayCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('price')}"-->
-            <!--         th:errors="*{price}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('birthdayCustomer')}"
+                     th:errors="*{birthdayCustomer}"></p>
         </div>
         <div>
             <label>GenDer</label>
@@ -41,27 +42,27 @@
         <div>
             <label>CMND</label>
             <input type="text" th:field="*{idCardCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('producer')}"-->
-            <!--         th:errors="*{producer}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('idCardCustomer')}"
+                     th:errors="*{idCardCustomer}"></p>
         </div>
         <div>
             <label>Phone</label>
             <input type="text" th:field="*{phoneCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('producer')}"-->
-            <!--         th:errors="*{producer}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('phoneCustomer')}"
+                     th:errors="*{phoneCustomer}"></p>
         </div>
 
         <div>
             <label>Email</label>
             <input type="text" th:field="*{emailCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('producer')}"-->
-            <!--         th:errors="*{producer}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('emailCustomer')}"
+                     th:errors="*{emailCustomer}"></p>
         </div>
         <div>
             <label>Address</label>
             <input type="text" th:field="*{addressCustomer}"/>
-            <!--      <p style="color: red" th:if="${#fields.hasErrors('producer')}"-->
-            <!--         th:errors="*{producer}"></p>-->
+                  <p style="color: red" th:if="${#fields.hasErrors('addressCustomer')}"
+                     th:errors="*{addressCustomer}"></p>
         </div>
 
         <div>
@@ -75,6 +76,7 @@
         <input type="submit" value="Save"/>
     </form>
 </div>
-<head th:replace="~{layout :: bot-bootstrap}">
+<footer th:replace="/layout :: footer"></footer>
+
 </body>
 </html>
