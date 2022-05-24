@@ -6,6 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 public interface ICustomerService {
     Page<Customer> findAll(Pageable pageable);
 
@@ -20,4 +22,7 @@ public interface ICustomerService {
 //    Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(String name, String email, Integer customerType, Pageable pageable);
 
     Customer findById(int id);
+
+    List<Customer> findAll();
+
 }

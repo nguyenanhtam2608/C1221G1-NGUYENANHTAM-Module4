@@ -4,19 +4,53 @@ import com.codegym.model.contract.Contract;
 import com.codegym.model.service.RentType;
 import com.codegym.model.service.ServiceType;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import java.util.List;
+
 
 public class ServiceDto {
+
     private Integer idService;
+    @NotBlank(message = "Không được phép để trống")
+    @Size(max = 100, message = "Không vượt quá 100 ký tự")
+    @Pattern(regexp = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ][\\s\\S]*$", message = "Tên không được nhập kí tự đặt biệt")
     private String nameService;
+    @NotBlank(message = "Không được phép để trống")
+    @Min(value = 0, message = "Diện tích phải có giá trị dương")
     private String areaService;
+    @NotBlank(message = "Không được phép để trống")
+    @Min(value = 0, message = "Cost phải có giá trị dương")
     private String costService;
+    @NotBlank(message = "Không được phép để trống")
+    @Min(value = 1, message = "Số người phải có giá trị dương")
     private String maxPeopleService;
+
     private RentType rentType;
     private ServiceType serviceType;
+
+
     private String standardRoom;
+    @NotBlank(message = "Không được phép để trống")
     private String descriptionOtherConvenience;
+
+    @Min(value = 0, message = "Diện tích phải có giá trị dương")
     private String poolArea;
+
+    @Min(value = 1, message = "Số người phải có giá trị Lớn hơn 1")
     private String numberOfFloors;
+
+    List<Contract> contracts;
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
 
     public ServiceDto() {
     }

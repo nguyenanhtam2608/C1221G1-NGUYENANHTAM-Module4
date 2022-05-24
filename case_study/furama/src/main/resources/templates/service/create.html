@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body class="container">
+<h3 style="text-align: center">Add Service</h3>
+<p>
+    <a th:href="@{/service}">
+        Back to customer list
+    </a>
+</p>
+<div class="table">
+    <form action="/service/save" th:object="${serviceDto}"
+          method="POST" novalidate="novalidate">
+        <input type="hidden" th:field="*{idService}"/>
+
+        <div>
+            <span> Rent Type</span>
+            <select th:field="*{rentType}" style="width: 100px;text-align: center">
+                <option th:each="rentType:${rentType}"
+                        th:value="${rentType.idRentType}"
+                        th:text="${rentType.nameRentType}">
+                </option>
+            </select>
+
+        </div>
+        <div>
+            <span> Service Type</span>
+            <select th:field="*{serviceType} " style="width: 100px;text-align: center" id="serviceType"
+                    onchange="changeType(this)">
+                <option th:each="serviceType:${serviceType}"
+                        th:value="${serviceType.idServiceType}"
+                        th:text="${serviceType.nameServiceType}"></option>
+            </select>
+        </div>
+        <div>
+            <label>Name</label>
+            <input type="text" th:field="*{nameService}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('nameService')}"
+               th:errors="*{nameService}"></p>
+        </div>
+        <div>
+            <label>Area </label>
+            <input type="text" th:field="*{areaService}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('areaService')}"
+               th:errors="*{areaService}"></p>
+        </div>
+        <!--        <div>-->
+        <!--            <label>GenDer</label>-->
+        <!--            <select th:field="*{genderCustomer}" >-->
+        <!--                <option value="0"> FeMale</option>-->
+        <!--                <option value="1"> Male</option>-->
+        <!--            </select>-->
+
+        <!--&lt;!&ndash;            <input type="text" th:field="*{genderCustomer}"/>&ndash;&gt;-->
+
+
+        <!--            &lt;!&ndash;      <p style="color: red" th:if="${#fields.hasErrors('description')}"&ndash;&gt;-->
+        <!--            &lt;!&ndash;         th:errors="*{description}"></p>&ndash;&gt;-->
+        <!--        </div>-->
+        <div>
+            <label>Cost</label>
+            <input type="text" th:field="*{costService}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('costService')}"
+               th:errors="*{costService}"></p>
+        </div>
+        <div>
+            <label>Description</label>
+            <input type="text" th:field="*{descriptionOtherConvenience}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+               th:errors="*{descriptionOtherConvenience}"></p>
+        </div>
+
+        <div id="floors">
+            <label>Number Of Floors</label>
+            <input   type="text" th:field="*{numberOfFloors}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
+               th:errors="*{numberOfFloors}"></p>
+        </div>
+        <div id="poorArea">
+            <label>Pool Area</label>
+
+            <input type="text"  th:field="*{poolArea}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
+               th:errors="*{poolArea}"></p>
+        </div>
+        <div>
+            <label>Strandard Room</label>
+            <input
+                    type="text" th:field="*{standardRoom}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}"
+               th:errors="*{standardRoom}"></p>
+        </div>
+        <div>
+            <label>Max PeoPle</label>
+            <input type="text" th:field="*{maxPeopleService}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('maxPeopleService')}"
+               th:errors="*{maxPeopleService}"></p>
+        </div>
+
+
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+<script>
+    function changeType(obj) {
+        let value = obj.value;
+        if (value == 1) {
+            document.getElementById("poorArea").style.display = "block";
+            document.getElementById("floors").style.display = "block";
+        }
+        if (value == 2) {
+            document.getElementById("poorArea").style.display = "none";
+            document.getElementById("floors").style.display = "block";
+        } else if (value == 3) {
+            document.getElementById("poorArea").style.display = "none";
+            document.getElementById("floors").style.display = "none";
+
+        }
+
+    }
+</script>
+</body>
+</html>

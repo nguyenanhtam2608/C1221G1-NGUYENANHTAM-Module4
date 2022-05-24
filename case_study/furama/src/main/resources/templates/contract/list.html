@@ -25,7 +25,7 @@
     <title>Customer</title>
 </head>
 <body>
-<h1 style="text-align: center">List Customer </h1>
+<h1 style="text-align: center">List ConTract </h1>
 
 <h3 style="float: right"><a th:href="@{/home}">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-heart-fill"
@@ -36,7 +36,7 @@
 </a></h3>
 
 <p style="float: start">
-    <a th:href="@{/customer/showCreate}">
+    <a th:href="@{/contract/showCreate}">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
              class="bi bi-person-plus-fill" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -45,40 +45,40 @@
         </svg>
     </a>
 </p>
-<div>
+<!--<div>-->
 
-    <form method="get" action="/customer/" th:value="${list}">
+<!--    <form method="get" action="/contract/" th:value="${list}">-->
 
-        <div class="input-group">
-        </div>
-        <span>   <div class="form-outline">
-                <input type="search" id="form1" class="form-control" name="searchName"/>
-                <label class="form-label" for="form1">Nhập tên muốn ?</label>
-            </div>
-        </span>
-        <br>
-        <br>
-        <span>   <div class="form-outline">
-                <input type="search" class="form-control" name="searchEmail"/>
-                <label class="form-label" for="form1">Nhập email muốn ?</label>
-            </div>
-        <br>
-        <br>
-        <select name="searchType">
-            <option value="%" th:text="${'--- CustomerType---'}"></option>
-            <option th:each="customerType : ${customerType}"
-                    th:value="${customerType.idCustomerType}"
-                    th:text="${customerType.nameCustomerType}">
-            </option>
-        </select>
-            <br>
-            <br>
-        <button type="submit" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-        </button>
-        </span>
-    </form>
-</div>
+<!--        <div class="input-group">-->
+<!--        </div>-->
+<!--        <span>   <div class="form-outline">-->
+<!--                <input type="search" id="form1" class="form-control" name="sCustomer"/>-->
+<!--                <label class="form-label" for="form1">Nhập tên Customer muốn ?</label>-->
+<!--            </div>-->
+<!--        </span>-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <span>   <div class="form-outline">&ndash;&gt;-->
+<!--&lt;!&ndash;                <input type="search" class="form-control" name="searchEmail"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                <label class="form-label" for="form1">Nhập email muốn ?</label>&ndash;&gt;-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <br>&ndash;&gt;-->
+<!--&lt;!&ndash;        <select name="searchType">&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="%" th:text="${'-&#45;&#45; CustomerType-&#45;&#45;'}"></option>&ndash;&gt;-->
+<!--&lt;!&ndash;            <option th:each="customerType : ${customerType}"&ndash;&gt;-->
+<!--&lt;!&ndash;                    th:value="${customerType.idCustomerType}"&ndash;&gt;-->
+<!--&lt;!&ndash;                    th:text="${customerType.nameCustomerType}">&ndash;&gt;-->
+<!--&lt;!&ndash;            </option>&ndash;&gt;-->
+<!--&lt;!&ndash;        </select>&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--&lt;!&ndash;            <br>&ndash;&gt;-->
+<!--        <button type="submit" class="btn btn-primary">-->
+<!--            <i class="fas fa-search"></i>-->
+<!--        </button>-->
+<!--        </span>-->
+<!--    </form>-->
+<!--</div>-->
 
 
 <div class="notify">
@@ -90,7 +90,7 @@
 <div style="text-align: center">
 
     <a th:if="${list.hasPrevious()}"
-       th:href="@{/customer/(page=${list.number - 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+       th:href="@{/contract/(page=${list.number - 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
              class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
@@ -101,7 +101,7 @@
     <span th:text="${list.totalPages}"></span>
 
     <a th:if="${list.hasNext()}"
-       th:href="@{/customer/(page=${list.number + 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+       th:href="@{/contract/(page=${list.number + 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
              class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -142,7 +142,7 @@
                 </svg>
 
             </a>
-            Type Customer
+            Deposit Contract
             <a th:href="@{/customer/(sort='id_customer_type,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -159,7 +159,7 @@
                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                 </svg>
             </a>
-            Name
+            Start Date
             <a th:href="@{/customer/(sort='name_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
@@ -168,7 +168,9 @@
                 </svg>
             </a>
         </th>
-        <th>BirthDay
+        <th>
+
+            End Date
             <a th:href="@{/customer/(sort='birthday_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -185,7 +187,7 @@
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Gender
+        <th>Total money
             <a th:href="@{/customer/(sort='gender_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -202,7 +204,7 @@
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>CMND
+        <th>Customer
             <a th:href="@{/customer/(sort='id_card_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -219,7 +221,7 @@
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Phone
+        <th>Employee
             <a th:href="@{/customer/(sort='phone_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
@@ -236,7 +238,7 @@
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Email
+        <th>Service
 
             <a th:href="@{/customer/(sort='email_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
@@ -255,23 +257,7 @@
                 </svg>
             </a>
         </th>
-        <th>Address
-            <a th:href="@{/customer/(sort='address_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-arrow-down" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-                </svg>
 
-            </a>
-
-            <a th:href="@{/customer/(sort='address_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                     class="bi bi-arrow-up" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd"
-                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
-                </svg>
-            </a></th>
         <th>Edit</th>
         <th>Delete</th>
 
@@ -281,33 +267,34 @@
     </div>
     </thead>
     <tbody>
-    <tr th:each="customer, row :${list}">
+    <tr th:each="contract, row :${list}">
         <td th:text="${row.count}"></td>
-        <td th:text="${customer.idCustomer}"></td>
-        <td th:text="${customer.customerType.nameCustomerType}"></td>
-        <td th:text="${customer.nameCustomer}"></td>
-        <td th:text="${customer.birthdayCustomer}"></td>
+        <td th:text="${contract.idContract}"></td>
+        <td th:text="${contract.depositContract}"></td>
+        <td th:text="${contract.startDateContract}"></td>
+        <td th:text="${contract.endDateContract}"></td>
 
-        <td th:if="${customer.genderCustomer==1}"
-            th:text="Male">
-        </td>
-        <td
-                th:if="${customer.genderCustomer==0}"
-                th:text="FeMale">
-        </td>
-        <td th:text="${customer.idCardCustomer}"></td>
-        <td th:text="${customer.phoneCustomer}"></td>
-        <td th:text="${customer.emailCustomer}"></td>
-        <td th:text="${customer.addressCustomer}"></td>
+<!--        <td th:if="${customer.genderCustomer==1}"-->
+<!--            th:text="Male">-->
+<!--        </td>-->
+<!--        <td-->
+<!--                th:if="${customer.genderCustomer==0}"-->
+<!--                th:text="FeMale">-->
+
+<!--        </td>-->
+        <td th:text="${contract.totalMoneyContract}"></td>
+        <td th:text="${contract.customer.nameCustomer}"></td>
+        <td th:text="${contract.employee.nameEmployee}"></td>
+        <td th:text="${contract.service.nameService}"></td>
         <td>
-            <a th:href="@{/customer/{id}/showEdit(id=${customer.getIdCustomer()})}">
+            <a th:href="@{/contract/{id}/showEdit(id=${contract.getIdContract()})}">
                 <button type="button" class="btn btn-warning">Edit</button>
             </a></td>
         <!--            <td><a th:href="@{/blog/{id}/showDelete(id=${customer.getId()})}">delete</a></td>-->
 
         <td>
             <button
-                    th:attr="onclick=|deleteModal('${customer.idCustomer}','${customer.nameCustomer}')|"
+                    th:attr="onclick=|deleteModal('${contract.idContract}', '${contract.depositContract}')|"
                     type="button" class="btn btn-danger" data-toggle="modal"
                     data-target="#exampleModalCenter">
                 Delete
@@ -336,7 +323,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                 </button>
                 <form method="post" th:action="@{/customer/delete}">
-                    <input type="hidden" name="idCustomer" id="id-del">
+                    <input type="hidden" name="idContract" id="id-del">
                     <button type="submit" class="btn btn-primary">Xác nhận xoá</button>
                 </form>
             </div>

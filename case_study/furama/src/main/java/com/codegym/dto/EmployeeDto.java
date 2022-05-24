@@ -16,7 +16,7 @@ public class EmployeeDto {
 
     @NotBlank(message = "Không được phép để trống")
     @Size(max = 100, message = "Không vượt quá 100 ký tự")
-    @Pattern(regexp = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ][\\s\\S]*$", message = "Không được nhập kí tự đặt biệt")
+    @Pattern(regexp = "^[A-Za-zÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚÝàáâãèéêìíòóôõùúýĂăĐđĨĩŨũƠơƯưẠ-ỹ][\\s\\S]*$", message = "Tên không được nhập kí tự đặt biệt")
     String nameEmployee;
     String birthdayEmployee;
     @Pattern(regexp = "[0-9]{9}", message = "Chứng minh nhân dân có định dạng 9 số")

@@ -22,10 +22,10 @@
                 rel="stylesheet"
         />
     </div>
-    <title>Customer</title>
+    <title>Service</title>
 </head>
 <body>
-<h1 style="text-align: center">List Customer </h1>
+<h1 style="text-align: center">List Service </h1>
 
 <h3 style="float: right"><a th:href="@{/home}">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-house-heart-fill"
@@ -36,7 +36,7 @@
 </a></h3>
 
 <p style="float: start">
-    <a th:href="@{/customer/showCreate}">
+    <a th:href="@{/service/showCreate}">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
              class="bi bi-person-plus-fill" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
@@ -47,7 +47,7 @@
 </p>
 <div>
 
-    <form method="get" action="/customer/" th:value="${list}">
+    <form method="get" action="/service" th:value="${list}">
 
         <div class="input-group">
         </div>
@@ -58,21 +58,23 @@
         </span>
         <br>
         <br>
-        <span>   <div class="form-outline">
-                <input type="search" class="form-control" name="searchEmail"/>
-                <label class="form-label" for="form1">Nhập email muốn ?</label>
-            </div>
-        <br>
-        <br>
-        <select name="searchType">
-            <option value="%" th:text="${'--- CustomerType---'}"></option>
-            <option th:each="customerType : ${customerType}"
-                    th:value="${customerType.idCustomerType}"
-                    th:text="${customerType.nameCustomerType}">
+        <select name="searchRent">
+            <option value="%" th:text="---RentType---"></option>
+            <option th:each="rentType : ${rentType}"
+                    th:value="${rentType.idRentType}"
+                    th:text="${rentType.nameRentType}">
             </option>
         </select>
-            <br>
-            <br>
+
+        <select name="searchType">
+            <option value="%" th:text="---ServiceType---"></option>
+            <option th:each="serviceType : ${serviceType}"
+                    th:value="${serviceType.idServiceType}"
+                    th:text="${serviceType.nameServiceType}">
+            </option>
+        </select>
+        <br>
+        <br>
         <button type="submit" class="btn btn-primary">
             <i class="fas fa-search"></i>
         </button>
@@ -90,7 +92,7 @@
 <div style="text-align: center">
 
     <a th:if="${list.hasPrevious()}"
-       th:href="@{/customer/(page=${list.number - 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+       th:href="@{/service/(page=${list.number - 1},  sort=${sortBy},searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
              class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
@@ -101,7 +103,7 @@
     <span th:text="${list.totalPages}"></span>
 
     <a th:if="${list.hasNext()}"
-       th:href="@{/customer/(page=${list.number + 1},  sort=${sortBy},searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+       th:href="@{/service/(page=${list.number + 1},  sort=${sortBy},searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
              class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
             <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
@@ -117,16 +119,16 @@
 
 
         <th style="padding: 0px">
-            <a th:href="@{/customer/(sort='id_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                 class="bi bi-arrow-down" viewBox="0 0 16 16">
-                <path fill-rule="evenodd"
-                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
-            </svg>
+            <a th:href="@{/service/(sort='id_service,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
 
-        </a>
+            </a>
             Id
-            <a th:href="@{/customer/(sort='id_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='id_service,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -134,7 +136,7 @@
                 </svg>
             </a></th>
         <th style="padding: 0px">
-            <a th:href="@{/customer/(sort='id_customer_type,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='area_service,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -142,8 +144,8 @@
                 </svg>
 
             </a>
-            Type Customer
-            <a th:href="@{/customer/(sort='id_customer_type,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            Area
+            <a th:href="@{/service/(sort='area_service,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -152,15 +154,15 @@
             </a>
         </th>
         <th style="padding: 0px">
-            <a th:href="@{/customer/(sort='name_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='cost_service,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
                 </svg>
             </a>
-            Name
-            <a th:href="@{/customer/(sort='name_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            Cost
+            <a th:href="@{/service/(sort='cost_service,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -168,8 +170,8 @@
                 </svg>
             </a>
         </th>
-        <th>BirthDay
-            <a th:href="@{/customer/(sort='birthday_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+        <th>Description
+            <a th:href="@{/service/(sort='description_other_convenience,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -178,15 +180,15 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='birthday_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='description_other_convenience,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Gender
-            <a th:href="@{/customer/(sort='gender_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+        <th>Name
+            <a th:href="@{/service/(sort='name_service,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -195,16 +197,16 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='gender_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='name_service,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>CMND
-            <a th:href="@{/customer/(sort='id_card_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+        <th>Number of floors
+            <a th:href="@{/service/(sort='number_of_floors,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
@@ -212,16 +214,16 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='id_card_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+            <a th:href="@{/service/(sort='number_of_floors,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Phone
-            <a th:href="@{/customer/(sort='phone_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+        <th>Pool Area
+            <a th:href="@{/service/(sort='pool_area,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
@@ -229,17 +231,17 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='phone_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+            <a th:href="@{/service/(sort='pool_area,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a></th>
-        <th>Email
+        <th>Standard Room
 
-            <a th:href="@{/customer/(sort='email_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+            <a th:href="@{/service/(sort='standard_room,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
@@ -247,16 +249,17 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='email_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" fill="currentColor"
+            <a th:href="@{/service/(sort='standard_room,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                           d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
                 </svg>
             </a>
         </th>
-        <th>Address
-            <a th:href="@{/customer/(sort='address_customer,asc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+
+        <th>Rent Type
+            <a th:href="@{/service/(sort='id_rent_type,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -265,7 +268,42 @@
 
             </a>
 
-            <a th:href="@{/customer/(sort='address_customer,desc',searchName=${searchName},searchEmail=${searchEmail},searchType=${searchType})}">
+            <a th:href="@{/service/(sort='id_rent_type,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a></th>
+        <th>Service Type
+            <a th:href="@{/service/(sort='id_service_type,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+
+            </a>
+
+            <a th:href="@{/service/(sort='id_service_type,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+                </svg>
+            </a></th>
+
+        <th>Max People
+            <a th:href="@{/service/(sort='max_people_service,asc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+
+            </a>
+
+            <a th:href="@{/service/(sort='max_people_service,desc',searchName=${searchName},searchRent=${searchRent},searchType=${searchType})}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                      class="bi bi-arrow-up" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
@@ -281,33 +319,41 @@
     </div>
     </thead>
     <tbody>
-    <tr th:each="customer, row :${list}">
+    <tr th:each="service, row :${list}">
         <td th:text="${row.count}"></td>
-        <td th:text="${customer.idCustomer}"></td>
-        <td th:text="${customer.customerType.nameCustomerType}"></td>
-        <td th:text="${customer.nameCustomer}"></td>
-        <td th:text="${customer.birthdayCustomer}"></td>
+        <td th:text="${service.idService}"></td>
+        <!--        <td th:text="${service.customerType.nameCustomerType}"></td>-->
+        <td th:text="${service.areaService}"></td>
+        <td th:text="${service.costService}"></td>
 
-        <td th:if="${customer.genderCustomer==1}"
-            th:text="Male">
-        </td>
-        <td
-                th:if="${customer.genderCustomer==0}"
-                th:text="FeMale">
-        </td>
-        <td th:text="${customer.idCardCustomer}"></td>
-        <td th:text="${customer.phoneCustomer}"></td>
-        <td th:text="${customer.emailCustomer}"></td>
-        <td th:text="${customer.addressCustomer}"></td>
+        <!--        <td th:if="${customer.genderCustomer==1}"-->
+        <!--            th:text="Male">-->
+        <!--        </td>-->
+        <!--        <td-->
+        <!--                th:if="${customer.genderCustomer==0}"-->
+        <!--                th:text="FeMale">-->
+
+        <!--        </td>-->
+        <td th:text="${service.descriptionOtherConvenience}"></td>
+        <td th:text="${service.nameService}"></td>
+        <td th:unless="${service.numberOfFloors} eq null" th:text="${service.numberOfFloors}"></td>
+        <td th:if="${service.numberOfFloors} eq null" >Không có tầng</td>
+        <td th:unless="${service.poolArea} eq null" th:text="${service.poolArea}"></td>
+        <td th:if="${service.poolArea} eq null">Không có bể bơi</td>
+        <td th:text="${service.standardRoom}"></td>
+        <td th:text="${service.rentType.nameRentType}"></td>
+        <td th:text="${service.serviceType.nameServiceType}"></td>
+        <td th:text="${service.maxPeopleService}"></td>
+
         <td>
-            <a th:href="@{/customer/{id}/showEdit(id=${customer.getIdCustomer()})}">
+            <a th:href="@{/service/{id}/showEdit(id=${service.getIdService()})}">
                 <button type="button" class="btn btn-warning">Edit</button>
             </a></td>
         <!--            <td><a th:href="@{/blog/{id}/showDelete(id=${customer.getId()})}">delete</a></td>-->
 
         <td>
             <button
-                    th:attr="onclick=|deleteModal('${customer.idCustomer}','${customer.nameCustomer}')|"
+                    th:attr="onclick=|deleteModal('${service.idService}', '${service.nameService}')|"
                     type="button" class="btn btn-danger" data-toggle="modal"
                     data-target="#exampleModalCenter">
                 Delete
@@ -335,8 +381,8 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
                 </button>
-                <form method="post" th:action="@{/customer/delete}">
-                    <input type="hidden" name="idCustomer" id="id-del">
+                <form method="post" th:action="@{/service/delete}">
+                    <input type="hidden" name="idService" id="id-del">
                     <button type="submit" class="btn btn-primary">Xác nhận xoá</button>
                 </form>
             </div>
