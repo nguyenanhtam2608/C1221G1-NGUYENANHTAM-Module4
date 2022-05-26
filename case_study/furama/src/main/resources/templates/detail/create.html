@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+
+</head>
+<body class="container">
+<h3 style="text-align: center">Add Contract Detail</h3>
+<p>
+  <a th:href="@{/contractDetail}">
+    Back to Contract list
+  </a>
+</p>
+<div class="table">
+  <form action="/detail/save" th:object="${contractDetailDto}"
+        method="POST" novalidate="novalidate">
+    <input type="hidden" th:field="*{idContractDetail}"/>
+    <div>
+      <label>Quantity </label>
+      <input type="text" th:field="*{quantity}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('quantity')}"
+         th:errors="*{quantity}"></p>
+    </div>
+
+
+
+    <div>
+      <span>Attach Service </span>
+      <select th:field="*{attachService}">
+        <option th:each="attachService:${attService}"
+                th:value="${attachService.idAttachService}"
+                th:text="${attachService.nameAttachService}"></option>
+      </select>
+
+    </div>
+    <div>
+      <span> Contract code  </span>
+      <select th:field="*{contract}">
+        <option th:each="contract:${contract}"
+                th:value="${contract.idContract}"
+                th:text="${contract.idContract}"></option>
+      </select>
+    </div>
+
+    <input type="submit" value="Save"/>
+  </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+
+</body>
+</html>

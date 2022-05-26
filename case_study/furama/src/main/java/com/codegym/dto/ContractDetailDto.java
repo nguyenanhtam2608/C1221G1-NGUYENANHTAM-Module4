@@ -1,24 +1,17 @@
-package com.codegym.model.contract;
+package com.codegym.dto;
+
+import com.codegym.model.contract.AttachService;
+import com.codegym.model.contract.Contract;
 
 import javax.persistence.*;
 
-@Entity
-@Table
-public class ContractDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDetailDto {
     private int idContractDetail;
-
-    @ManyToOne
-    @JoinColumn(name = "contract_id", referencedColumnName = "idContract")
     private Contract contract;
-    @ManyToOne
-    @JoinColumn(name = "attach_service_id", referencedColumnName = "idAttachService")
     private AttachService attachService;
-    @Column(columnDefinition = "INTEGER")
     private String quantity;
 
-    public ContractDetail() {
+    public ContractDetailDto() {
     }
 
     public int getIdContractDetail() {

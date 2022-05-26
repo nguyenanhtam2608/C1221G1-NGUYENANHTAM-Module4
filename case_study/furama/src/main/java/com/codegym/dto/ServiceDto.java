@@ -2,16 +2,23 @@ package com.codegym.dto;
 
 import com.codegym.model.contract.Contract;
 import com.codegym.model.service.RentType;
+import com.codegym.model.service.Service;
 import com.codegym.model.service.ServiceType;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 
-public class ServiceDto {
+public class ServiceDto implements Validator {
 
     private Integer idService;
     @NotBlank(message = "Không được phép để trống")
@@ -36,11 +43,11 @@ public class ServiceDto {
     @NotBlank(message = "Không được phép để trống")
     private String descriptionOtherConvenience;
 
+    @Min(value = -1, message = "Số Tầng phải có giá trị Lớn hơn 1")
+    private String numberOfFloors;
     @Min(value = 0, message = "Diện tích phải có giá trị dương")
     private String poolArea;
 
-    @Min(value = 1, message = "Số người phải có giá trị Lớn hơn 1")
-    private String numberOfFloors;
 
     List<Contract> contracts;
 
@@ -141,5 +148,22 @@ public class ServiceDto {
 
     public void setNumberOfFloors(String numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
+    }
+
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        Service servicec = (Service) target;
+        if (servicec.getServiceType().getIdServiceType() == 1) {
+            errors.rejectValue("numberOfFloors", "numberOfFloors.errorCuss");
+
+
+        }
+
     }
 }

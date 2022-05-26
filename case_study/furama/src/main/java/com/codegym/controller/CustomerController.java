@@ -10,11 +10,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -33,6 +35,7 @@ public class CustomerController {
                        @RequestParam Optional<String> sort,
                        @PageableDefault(value = 2, sort = {}) Pageable pageable,
                        Model model) {
+
         String sortBy = sort.orElse("");
         String searchName = nameCustomer.orElse("");
         String searchEmail = emailCustomer.orElse("");
@@ -43,7 +46,7 @@ public class CustomerController {
         model.addAttribute("customerType", this.iCustomerServiceType.findAll());
         model.addAttribute("sortBy", sortBy);
 //        model.addAttribute("list", this.iCustomerService.findCustomerByNameCustomerContainingAndEmailCustomerContaining(searchName, searchEmail, pageable));
-        model.addAttribute("list",this.iCustomerService.findAllAndSearch(searchName,searchEmail,searchType,pageable));
+        model.addAttribute("list", this.iCustomerService.findAllAndSearch(searchName, searchEmail, searchType, pageable));
 
         return "/customer/list";
     }
@@ -59,6 +62,9 @@ public class CustomerController {
     public String create(@ModelAttribute @Validated CustomerDto customerDto,// giống nhau
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes, Model model) {
+        customerDto.setCustomerList(this.iCustomerService.findAll());//
+        new CustomerDto().validate(customerDto, bindingResult);
+
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerType", this.iCustomerServiceType.findAll());
             return "/customer/create";
@@ -73,9 +79,15 @@ public class CustomerController {
 
     }
 
-    @PostMapping("delete")
-    public String delete(Customer customer, RedirectAttributes redirectAttributes   ) {
-        iCustomerService.delete(customer);
+    //    @PostMapping("delete")
+//    public String delete(Customer customer, RedirectAttributes redirectAttributes) {
+//        iCustomerService.delete(customer);
+//        redirectAttributes.addFlashAttribute("success", "Removed customer successfully!");
+//        return "redirect:/customer/";
+//    }
+    @GetMapping("delete")
+    public String delete(@RequestParam("id") Integer[] idCustomer, RedirectAttributes redirectAttributes) {
+        iCustomerService.delete(idCustomer);
         redirectAttributes.addFlashAttribute("success", "Removed customer successfully!");
         return "redirect:/customer/";
     }
@@ -102,6 +114,14 @@ public class CustomerController {
             redirectAttributes.addFlashAttribute("success", "Save Customer successfully!");
             return "redirect:/customer/";
         }
-
     }
+
+
+//    @GetMapping("option")
+//    public String index(Model model) {
+//        Customer customer = new Customer();
+//        model.addAttribute("list", iCustomerService.findAll());
+//    }
+
+
 }

@@ -4,6 +4,7 @@ import com.codegym.dto.ContractDto;
 import com.codegym.dto.CustomerDto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.customer.Customer;
+import com.codegym.model.employee.Employee;
 import com.codegym.service.Contract.IContractService;
 import com.codegym.service.customer.ICustomerService;
 import com.codegym.service.employee.IEmployeeService;
@@ -25,8 +26,8 @@ import java.util.Optional;
 @RequestMapping("contract")
 public class ContractController {
     @Autowired
-    ICustomerService iCustomerService;
-    @Autowired
+   private ICustomerService iCustomerService;
+  private   @Autowired
     IEmployeeService iEmployeeService;
     @Autowired
     IServiceService iServiceService;
@@ -41,9 +42,9 @@ public class ContractController {
                        @PageableDefault(value = 2, sort = {}) Pageable pageable,
                        Model model) {
         String sortBy = sort.orElse("");
-        String sCustomer = searchCustomer.orElse("%");
-        String sEmployee = searchEmployee.orElse("%");
-        String sService = searchService.orElse("%");
+        String sCustomer = searchCustomer.orElse("");
+        String sEmployee = searchEmployee.orElse("");
+        String sService = searchService.orElse("");
         model.addAttribute("sCustomer", sCustomer);
         model.addAttribute("sEmployee", sEmployee);
         model.addAttribute("sService", sService);
@@ -52,8 +53,8 @@ public class ContractController {
         model.addAttribute("service", this.iServiceService.findAll());
         model.addAttribute("sortBy", sortBy);
 //        model.addAttribute("list", this.iCustomerService.findCustomerByNameCustomerContainingAndEmailCustomerContaining(searchName, searchEmail, pageable));
-        model.addAttribute("list", this.iContractService.findAllAndSearch(sCustomer, sEmployee, sService, pageable));
-//        model.addAttribute("list", this.iContractService.findAll(pageable));
+//        model.addAttribute("list", this.iContractService.findAllAndSearch(sCustomer, sEmployee, sService, pageable));
+        model.addAttribute("list", this.iContractService.findAll(pageable));
         return "/contract/list";
     }
 
@@ -70,6 +71,7 @@ public class ContractController {
     public String create(@ModelAttribute @Validated ContractDto contractDto,// giống nhau
                          BindingResult bindingResult,
                          RedirectAttributes redirectAttributes, Model model) {
+        new ContractDto().validate(contractDto,bindingResult);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customer", this.iCustomerService.findAll());
             model.addAttribute("employee", this.iEmployeeService.findAll());
@@ -85,5 +87,6 @@ public class ContractController {
         }
 
     }
+
 
 }

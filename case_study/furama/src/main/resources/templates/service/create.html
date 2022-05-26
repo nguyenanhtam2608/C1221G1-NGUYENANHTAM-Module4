@@ -61,7 +61,7 @@
         <!--        </div>-->
         <div>
             <label>Cost</label>
-            <input type="text" th:field="*{costService}"/>
+            <input type="number" th:field="*{costService}"/>
             <p style="color: red" th:if="${#fields.hasErrors('costService')}"
                th:errors="*{costService}"></p>
         </div>
@@ -74,16 +74,16 @@
 
         <div id="floors">
             <label>Number Of Floors</label>
-            <input   type="text" th:field="*{numberOfFloors}"/>
+            <input type="number" value="1" th:field="*{numberOfFloors}" id="floorss"/>
             <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
-               th:errors="*{numberOfFloors}"></p>
+               th:errors="*{numberOfFloors}" ></p>
         </div>
         <div id="poorArea">
             <label>Pool Area</label>
 
-            <input type="text"  th:field="*{poolArea}"/>
+            <input type="number" th:field="*{poolArea}" id="poorAreaa"/>
             <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
-               th:errors="*{poolArea}"></p>
+               th:errors="*{poolArea}" ></p>
         </div>
         <div>
             <label>Strandard Room</label>
@@ -117,7 +117,8 @@
         } else if (value == 3) {
             document.getElementById("poorArea").style.display = "none";
             document.getElementById("floors").style.display = "none";
-
+            document.getElementById("poorAreaa").setAttribute("value","1");// set value măt dinh
+            document.getElementById("floorss").setAttribute("value","1");
         }
 
     }

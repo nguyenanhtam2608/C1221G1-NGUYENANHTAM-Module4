@@ -1,6 +1,8 @@
 package com.codegym.model.service;
 
 import com.codegym.model.contract.Contract;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
 import javax.persistence.*;
 import java.util.List;
@@ -131,4 +133,6 @@ public class Service {
     public void setNumberOfFloors(String numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
+
+
 }

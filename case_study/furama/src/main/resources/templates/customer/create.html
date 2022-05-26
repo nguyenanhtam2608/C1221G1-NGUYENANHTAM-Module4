@@ -56,7 +56,9 @@
             <label>Email</label>
             <input type="text" th:field="*{emailCustomer}"/>
                   <p style="color: red" th:if="${#fields.hasErrors('emailCustomer')}"
-                     th:errors="*{emailCustomer}"></p>
+                     th:errors="*{emailCustomer}">
+
+                  </p>
         </div>
         <div>
             <label>Address</label>

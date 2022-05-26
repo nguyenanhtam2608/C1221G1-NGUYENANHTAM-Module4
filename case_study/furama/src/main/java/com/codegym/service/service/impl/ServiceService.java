@@ -17,16 +17,19 @@ public class ServiceService implements IServiceService {
 
     @Override
     public Page<com.codegym.model.service.Service> findAllAndSearch(String searchName, String searchRent, String searchType, Pageable pageable) {
-        return iServiceRepository.findAllAndSearch("%"+searchName+"%",searchRent,searchType,pageable);
+        return iServiceRepository.findAllAndSearch("%" + searchName + "%", searchRent, searchType, pageable);
     }
 
     @Override
     public void save(com.codegym.model.service.Service service) {
-        if(service.getPoolArea().equals("")){
+        if (service.getPoolArea().equals("1")) {
             service.setPoolArea(null);
         }
-        if(service.getNumberOfFloors().equals("")){
+        if (service.getNumberOfFloors().equals("1")) {
             service.setNumberOfFloors(null);
+        }
+        if (service.getServiceType().getIdServiceType() == 1) {
+                service.setPoolArea("1");
         }
         iServiceRepository.save(service);
     }

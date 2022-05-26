@@ -41,35 +41,52 @@
 <!--    </div>-->
     <div>
       <label>End Day</label>
-      <input type="text" th:field="*{endDateContract}"/>
+      <input type="date" th:field="*{endDateContract}"/>
       <p style="color: red" th:if="${#fields.hasErrors('endDateContract')}"
          th:errors="*{endDateContract}"></p>
     </div>
-    <div>
-      <label>Phone</label>
-      <input type="text" th:field="*{phoneCustomer}"/>
-      <p style="color: red" th:if="${#fields.hasErrors('phoneCustomer')}"
-         th:errors="*{phoneCustomer}"></p>
-    </div>
 
     <div>
-      <label>Email</label>
-      <input type="text" th:field="*{emailCustomer}"/>
-      <p style="color: red" th:if="${#fields.hasErrors('emailCustomer')}"
-         th:errors="*{emailCustomer}"></p>
-    </div>
-    <div>
-      <label>Address</label>
-      <input type="text" th:field="*{addressCustomer}"/>
-      <p style="color: red" th:if="${#fields.hasErrors('addressCustomer')}"
-         th:errors="*{addressCustomer}"></p>
+      <label>Total money</label>
+      <input type="text" th:field="*{totalMoneyContract}"/>
+      <p style="color: red" th:if="${#fields.hasErrors('totalMoneyContract')}"
+         th:errors="*{totalMoneyContract}"></p>
     </div>
 
+<!--    <div>-->
+<!--      <label>Email</label>-->
+<!--      <input type="text" th:field="*{emailCustomer}"/>-->
+<!--      <p style="color: red" th:if="${#fields.hasErrors('emailCustomer')}"-->
+<!--         th:errors="*{emailCustomer}"></p>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--      <label>Address</label>-->
+<!--      <input type="text" th:field="*{addressCustomer}"/>-->
+<!--      <p style="color: red" th:if="${#fields.hasErrors('addressCustomer')}"-->
+<!--         th:errors="*{addressCustomer}"></p>-->
+<!--    </div>-->
+
     <div>
-      <select th:field="*{customerType}">
-        <option th:each="customerType:${customerType}"
-                th:value="${customerType.idCustomerType}"
-                th:text="${customerType.nameCustomerType}"></option>
+      <select th:field="*{customer}">
+        <option th:each="customer:${customer}"
+                th:value="${customer.idCustomer}"
+                th:text="${customer.nameCustomer}"></option>
+      </select>
+
+    </div>
+    <div>
+      <select th:field="*{employee}">
+        <option th:each="employee:${employee}"
+                th:value="${employee.idEmployee}"
+                th:text="${employee.nameEmployee}"></option>
+      </select>
+
+    </div>
+    <div>
+      <select th:field="*{service}">
+        <option th:each="service:${service}"
+                th:value="${service.idService}"
+                th:text="${service.nameService}"></option>
       </select>
 
     </div>

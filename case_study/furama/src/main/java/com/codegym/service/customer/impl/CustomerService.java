@@ -7,10 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerService implements ICustomerService {
     @Autowired
     ICustomerRepository iCustomerRepository;
@@ -31,20 +36,18 @@ public class CustomerService implements ICustomerService {
         iCustomerRepository.save(customer);
     }
 
+//    @Override
+//    public void delete(Customer customer) {
+//        iCustomerRepository.delete(customer);
+//    }
     @Override
-    public void delete(Customer customer) {
-        iCustomerRepository.delete(customer);
+    public void delete(Integer[] idCustomer) {
+        iCustomerRepository.deleteAllByIdCustomer(Arrays.asList(idCustomer));
+
+
     }
 
-//    @Override
-//    public Page<Customer> findCustomerByCustomerTypeContaining(String searchType,Pageable pageable) {
-//        return iCustomerRepository.findCustomerByCustomerTypeContaining(searchType,pageable);
-//    }
-//
-//    @Override
-//    public Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(String name, String email, Integer customerType, Pageable pageable) {
-//        return iCustomerRepository.findCustomerByNameCustomerContainingAndEmailCustomerContainingAndCustomerType(name,email,customerType,pageable);
-//    }
+
 
     @Override
     public Customer findById(int id) {

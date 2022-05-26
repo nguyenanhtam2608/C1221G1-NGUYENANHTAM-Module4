@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="/layout :: head">
 </head>
-<body>
+<body onload="myFunction()">
 <h3>Edit Customer</h3>
 <p>
     <a th:href="@{/service}">
@@ -72,14 +72,14 @@
 
         <div id="floors">
             <label>Number Of Floors</label>
-            <input   type="text" th:field="*{numberOfFloors}"/>
+            <input type="text" th:field="*{numberOfFloors}" id="floorss"/>
             <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
                th:errors="*{numberOfFloors}"></p>
         </div>
         <div id="poorArea">
             <label>Pool Area</label>
 
-            <input type="text"  th:field="*{poolArea}"/>
+            <input type="text" th:field="*{poolArea}" id="poorAreaa"/>
             <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
                th:errors="*{poolArea}"></p>
         </div>
@@ -103,7 +103,9 @@
 </div>
 <footer th:replace="/layout :: footer"></footer>
 <script>
+    changeType(document.getElementById("serviceType"))
     function changeType(obj) {
+        console.log(obj.value)
         let value = obj.value;
         if (value == 1) {
             document.getElementById("poorArea").style.display = "block";
@@ -115,11 +117,28 @@
         } else if (value == 3) {
             document.getElementById("poorArea").style.display = "none";
             document.getElementById("floors").style.display = "none";
-
+            document.getElementById("poorAreaa").setAttribute("value", "1");// set value măt dinh
+            document.getElementById("floorss").setAttribute("value", "1");
         }
-
-
     }
+    // function myFunction() {
+    //
+    //     if (document.getElementById("serviceType").value == 1) {
+    //         document.getElementById("poorArea").style.display = "block";
+    //         document.getElementById("floors").style.display = "block";
+    //     }
+    //     if (document.getElementById("serviceType").value == 2) {
+    //         document.getElementById("poorArea").style.display = "none";
+    //         document.getElementById("floors").style.display = "block";
+    //     } else if (document.getElementById("serviceType").value == 3) {
+    //         document.getElementById("poorArea").style.display = "none";
+    //         document.getElementById("floors").style.display = "none";
+    //         document.getElementById("poorAreaa").setAttribute("value", "1");// set value măt dinh
+    //         document.getElementById("floorss").setAttribute("value", "1");
+    //     }
+    // }
+
+
 </script>
 <footer th:replace="/layout :: footer"></footer>
 </body>

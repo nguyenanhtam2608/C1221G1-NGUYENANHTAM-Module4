@@ -337,9 +337,10 @@
         <td th:text="${service.descriptionOtherConvenience}"></td>
         <td th:text="${service.nameService}"></td>
         <td th:unless="${service.numberOfFloors} eq null" th:text="${service.numberOfFloors}"></td>
-        <td th:if="${service.numberOfFloors} eq null" >Không có tầng</td>
+        <td th:if="${service.numberOfFloors} eq null">Không Có  Tầng</td>
         <td th:unless="${service.poolArea} eq null" th:text="${service.poolArea}"></td>
-        <td th:if="${service.poolArea} eq null">Không có bể bơi</td>
+        <td th:if="${service.poolArea} eq null">Không</td>
+        <td th:if="${service.poolArea == '1'} ">1</td>
         <td th:text="${service.standardRoom}"></td>
         <td th:text="${service.rentType.nameRentType}"></td>
         <td th:text="${service.serviceType.nameServiceType}"></td>
@@ -347,7 +348,7 @@
 
         <td>
             <a th:href="@{/service/{id}/showEdit(id=${service.getIdService()})}">
-                <button type="button" class="btn btn-warning">Edit</button>
+                <button type="button" class="btn btn-warning"> Edit</button>
             </a></td>
         <!--            <td><a th:href="@{/blog/{id}/showDelete(id=${customer.getId()})}">delete</a></td>-->
 
@@ -425,6 +426,10 @@
             });
         });</script>
 </div>
+<script>
+
+
+</script>
 <footer th:replace="~{layout :: footer}"></footer>
 </body>
 </html>

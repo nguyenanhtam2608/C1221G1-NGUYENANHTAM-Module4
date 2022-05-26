@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface IContractRepository extends JpaRepository<Contract,Integer> {
 
@@ -22,6 +24,9 @@ public interface IContractRepository extends JpaRepository<Contract,Integer> {
             Pageable pageable);
 
     Page<Contract> findAll(Pageable pageable);
+
+
+    List<Contract> findAll();
 
 
 }
