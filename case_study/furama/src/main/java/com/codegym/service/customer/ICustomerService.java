@@ -1,5 +1,6 @@
 package com.codegym.service.customer;
 
+import com.codegym.dto.HaveBooking;
 import com.codegym.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,4 +27,5 @@ public interface ICustomerService {
 
     List<Customer> findAll();
 
+    Page<HaveBooking> findAllBooking(String scustomer,Pageable pageable);
 }

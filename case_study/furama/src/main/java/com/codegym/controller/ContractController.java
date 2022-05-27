@@ -48,7 +48,7 @@ public class ContractController {
         model.addAttribute("sCustomer", sCustomer);
         model.addAttribute("sEmployee", sEmployee);
         model.addAttribute("sService", sService);
-        model.addAttribute("customer", this.iCustomerService.findAll());
+        model.addAttribute("customer", this.iCustomerService.findAllBooking(sCustomer,pageable));
         model.addAttribute("employee", this.iEmployeeService.findAll());
         model.addAttribute("service", this.iServiceService.findAll());
         model.addAttribute("sortBy", sortBy);

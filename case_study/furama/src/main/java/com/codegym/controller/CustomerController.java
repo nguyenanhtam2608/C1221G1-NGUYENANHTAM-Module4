@@ -116,12 +116,21 @@ public class CustomerController {
         }
     }
 
+    @GetMapping("booking")
+    public String booking(@RequestParam Optional<String> searchName,
+                          @RequestParam Optional<String> sort,
+                          @PageableDefault(value = 2, sort = {}) Pageable pageable,
+                          Model model,
+                          RedirectAttributes redirectAttributes) {
+        String scustomer = searchName.orElse("");
+        String sortBy = sort.orElse("");
+        model.addAttribute("sortBy", sortBy);
+        model.addAttribute("searchName", searchName);
 
-//    @GetMapping("option")
-//    public String index(Model model) {
-//        Customer customer = new Customer();
-//        model.addAttribute("list", iCustomerService.findAll());
-//    }
+        model.addAttribute("listBooking", this.iCustomerService.findAllBooking(scustomer, pageable));
+        return "customer/booking";
+
+    }
 
 
 }

@@ -110,7 +110,7 @@
 </div>
 
 <form th:action="@{/customer/delete}" method="get">
-<button style="float: right" type="submit">Delete</button>
+<!--<button style="float: right" type="submit">Delete</button>-->
 <table class="table container">
     <thead class="table-dark">
 
@@ -323,6 +323,7 @@
             <input type="checkbox" th:value="${customer.idCustomer}" name="id">
         </td>
 
+<td><a th:href="@{customer/booking}"></a> </td>
 
     </tr>
     </tbody>

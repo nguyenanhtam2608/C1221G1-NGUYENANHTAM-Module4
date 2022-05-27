@@ -1,5 +1,6 @@
 package com.codegym.service.customer.impl;
 
+import com.codegym.dto.HaveBooking;
 import com.codegym.model.customer.Customer;
 import com.codegym.repository.customer.ICustomerRepository;
 import com.codegym.service.customer.ICustomerService;
@@ -9,8 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -58,6 +58,12 @@ public class CustomerService implements ICustomerService {
     public List<Customer> findAll() {
         return iCustomerRepository.findAll();
     }
+
+    @Override
+    public Page<HaveBooking> findAllBooking(String scustomer, Pageable pageable) {
+        return iCustomerRepository.findAllBooking("%"+scustomer+"%",pageable);
+    }
+
 
     @Override
     public Page<Customer> findCustomerByNameCustomerContainingAndEmailCustomerContaining(String name, String email, Pageable pageable) {
